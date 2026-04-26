@@ -1,0 +1,2282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The NYC Cart · Halal · Lakeland, FL</title>
+  <meta name="description" content="New York Style Halal Street Food in Lakeland, Florida. Chicken Gyros, Shawarma, Lamb Platters & more. Order online via UberEats or DoorDash. (863) 600-3524" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥙</text></svg>" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===== RESET & VARIABLES ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow:   #F5C518;
+      --yellow-d: #D4AA10;
+      --black:    #0B0B0B;
+      --charcoal: #1A1A1A;
+      --dark:     #111111;
+      --cream:    #F2EDE4;
+      --warm:     #E8DFD0;
+      --text:     #D8D0C4;
+      --muted:    #7A7268;
+      --red:      #C8372D;
+      --green:    #2E7D4E;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body: 'Crimson Pro', serif;
+      --font-ui: 'Barlow Condensed', sans-serif;
+      --nav-h: 72px;
+      --max: 1200px;
+      --radius: 4px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--black);
+      color: var(--cream);
+      overflow-x: hidden;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: none; background: none; font: inherit; }
+
+    /* ===== UTILITY ===== */
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+    .tag {
+      display: inline-block;
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      border: 1px solid var(--yellow);
+      padding: 4px 12px;
+      border-radius: 2px;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(52px, 8vw, 88px);
+      line-height: .95;
+      letter-spacing: .02em;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-ui);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      border-radius: var(--radius);
+      transition: all .2s ease;
+    }
+    .btn-primary {
+      background: var(--yellow);
+      color: var(--black);
+    }
+    .btn-primary:hover { background: var(--yellow-d); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,197,24,.25); }
+    .btn-outline {
+      border: 2px solid var(--cream);
+      color: var(--cream);
+    }
+    .btn-outline:hover { background: var(--cream); color: var(--black); transform: translateY(-2px); }
+    .btn-dark {
+      background: var(--charcoal);
+      color: var(--cream);
+      border: 1px solid #333;
+    }
+    .btn-dark:hover { border-color: var(--yellow); color: var(--yellow); }
+
+    /* ===== NAV ===== */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      z-index: 1000;
+      transition: background .3s, box-shadow .3s;
+      background: rgba(11,11,11,0);
+    }
+    nav.scrolled {
+      background: rgba(11,11,11,.97);
+      box-shadow: 0 1px 0 #222;
+      backdrop-filter: blur(12px);
+    }
+    .nav-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 26px;
+      letter-spacing: .06em;
+      color: var(--yellow);
+      line-height: 1;
+    }
+    .nav-logo span { color: var(--cream); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--yellow); }
+    .nav-order {
+      background: var(--yellow);
+      color: var(--black) !important;
+      padding: 8px 18px;
+      border-radius: var(--radius);
+      font-weight: 700 !important;
+    }
+    .nav-order:hover { background: var(--yellow-d) !important; color: var(--black) !important; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+    }
+    .hamburger span {
+      width: 24px; height: 2px;
+      background: var(--cream);
+      border-radius: 2px;
+      transition: all .3s;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: var(--nav-h); left: 0; right: 0;
+      background: var(--dark);
+      padding: 24px;
+      z-index: 999;
+      border-top: 1px solid #222;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--font-ui);
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text);
+      padding: 12px 0;
+      border-bottom: 1px solid #1e1e1e;
+      transition: color .2s;
+    }
+    .mobile-menu a:hover { color: var(--yellow); }
+    .mobile-menu .btn-primary { margin-top: 12px; text-align: center; }
+
+    /* ===== HERO ===== */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: var(--black);
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 80% 50%, rgba(245,197,24,.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(200,55,45,.06) 0%, transparent 60%);
+    }
+    /* Subway tile texture */
+    .hero-tiles {
+      position: absolute;
+      right: -40px; top: 0; bottom: 0;
+      width: 50%;
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      grid-template-rows: repeat(12, 1fr);
+      gap: 3px;
+      opacity: .06;
+      transform: skewX(-3deg);
+    }
+    .hero-tiles span {
+      background: var(--cream);
+      border-radius: 1px;
+    }
+    .hero-tiles span:nth-child(3n) { background: var(--yellow); }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding-top: var(--nav-h);
+    }
+    .hero-eyebrow {
+      font-family: var(--font-ui);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 40px; height: 1px;
+      background: var(--yellow);
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(72px, 13vw, 160px);
+      line-height: .88;
+      letter-spacing: .02em;
+      margin-bottom: 8px;
+    }
+    .hero-title .line-yellow { color: var(--yellow); display: block; }
+    .hero-title .line-outline {
+      display: block;
+      -webkit-text-stroke: 2px var(--cream);
+      color: transparent;
+    }
+    .hero-sub {
+      font-size: 20px;
+      color: var(--text);
+      max-width: 460px;
+      margin: 24px 0 40px;
+      line-height: 1.5;
+    }
+    .hero-sub em { color: var(--yellow); font-style: italic; }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .hero-badges {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-top: 56px;
+      padding-top: 40px;
+      border-top: 1px solid #2a2a2a;
+      flex-wrap: wrap;
+    }
+    .hero-badge {
+      display: flex;
+      flex-direction: column;
+    }
+    .hero-badge strong {
+      font-family: var(--font-display);
+      font-size: 36px;
+      color: var(--yellow);
+      line-height: 1;
+    }
+    .hero-badge span {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .hero-divider { width: 1px; height: 40px; background: #2a2a2a; }
+
+    /* Halal badge */
+    .halal-seal {
+      position: absolute;
+      bottom: 60px; right: 80px;
+      width: 120px; height: 120px;
+      border: 2px solid var(--yellow);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      animation: rotate-seal 20s linear infinite;
+    }
+    @keyframes rotate-seal {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .halal-seal-inner {
+      animation: counter-rotate 20s linear infinite;
+    }
+    @keyframes counter-rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(-360deg); }
+    }
+    .halal-seal strong {
+      font-family: var(--font-display);
+      font-size: 22px;
+      color: var(--yellow);
+      display: block;
+    }
+    .halal-seal span {
+      font-family: var(--font-ui);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--cream);
+    }
+
+    /* ===== TICKER ===== */
+    .ticker {
+      background: var(--yellow);
+      color: var(--black);
+      overflow: hidden;
+      padding: 12px 0;
+    }
+    .ticker-track {
+      display: flex;
+      gap: 0;
+      animation: ticker 30s linear infinite;
+      white-space: nowrap;
+    }
+    .ticker-track:hover { animation-play-state: paused; }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    .ticker-item {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 0 28px;
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .ticker-item::after {
+      content: '✦';
+      font-size: 10px;
+    }
+
+    /* ===== ABOUT ===== */
+    #about {
+      padding: 120px 0;
+      position: relative;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-visual {
+      position: relative;
+    }
+    .about-photo-main {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--charcoal);
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+    }
+    .about-photo-main:hover img { transform: scale(1.04); }
+    .about-photo-accent {
+      position: absolute;
+      bottom: -32px; right: -32px;
+      width: 55%;
+      aspect-ratio: 1;
+      background: var(--charcoal);
+      border: 4px solid var(--black);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .about-photo-accent img { width: 100%; height: 100%; object-fit: cover; }
+    .photo-placeholder {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, #1a1a1a 0%, #222 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--muted);
+    }
+    .photo-placeholder .icon { font-size: 48px; opacity: .4; }
+    .photo-placeholder span {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 0 16px;
+    }
+    .about-content { padding-left: 20px; }
+    .about-content .tag { margin-bottom: 24px; }
+    .about-content .section-title { margin-bottom: 28px; }
+    .about-content p {
+      color: var(--text);
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+    .about-content p em { color: var(--cream); font-style: italic; }
+    .about-highlight {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 0;
+      border-top: 1px solid #1e1e1e;
+    }
+    .about-highlight:last-child { border-bottom: 1px solid #1e1e1e; }
+    .highlight-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+    .highlight-text strong {
+      display: block;
+      font-family: var(--font-ui);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 4px;
+    }
+    .highlight-text span {
+      font-size: 16px;
+      color: var(--muted);
+    }
+
+    /* ===== FEATURED / MENU ===== */
+    #menu {
+      padding: 120px 0;
+      background: var(--charcoal);
+      position: relative;
+    }
+    #menu::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #333, transparent);
+    }
+    .menu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 64px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .menu-header .tag { margin-bottom: 16px; display: block; }
+    .menu-tabs {
+      display: flex;
+      gap: 4px;
+      background: #111;
+      padding: 4px;
+      border-radius: var(--radius);
+      flex-wrap: wrap;
+    }
+    .menu-tab {
+      font-family: var(--font-ui);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 8px 18px;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .menu-tab.active {
+      background: var(--yellow);
+      color: var(--black);
+    }
+    .menu-tab:hover:not(.active) { color: var(--cream); }
+
+    /* Menu grid */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .menu-card {
+      background: var(--dark);
+      border: 1px solid #222;
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform .25s, border-color .25s, box-shadow .25s;
+      cursor: default;
+      display: none;
+    }
+    .menu-card.active { display: flex; flex-direction: column; }
+    .menu-card:hover {
+      transform: translateY(-4px);
+      border-color: #3a3a3a;
+      box-shadow: 0 16px 48px rgba(0,0,0,.4);
+    }
+    .menu-card.featured { border-color: var(--yellow); }
+    .card-image {
+      width: 100%;
+      aspect-ratio: 16/10;
+      background: #1a1a1a;
+      overflow: hidden;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+    .about-photo-main img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+    .about-photo-accent img { width: 100%; height: 100%; object-fit: cover; }
+    .social-cell img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+    .menu-card:hover .card-image img { transform: scale(1.06); }
+    .card-badge {
+      position: absolute;
+      top: 12px; left: 12px;
+      font-family: var(--font-ui);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      background: var(--yellow);
+      color: var(--black);
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+    .card-badge.new { background: var(--green); color: #fff; }
+    .card-badge.hot { background: var(--red); color: #fff; }
+    .card-body {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .card-name {
+      font-family: var(--font-ui);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 6px;
+    }
+    .card-desc {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.5;
+      flex: 1;
+    }
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid #1e1e1e;
+    }
+    .card-price {
+      font-family: var(--font-display);
+      font-size: 28px;
+      color: var(--yellow);
+    }
+    .card-rating {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-ui);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .stars { color: var(--yellow); font-size: 11px; }
+
+    /* Catering callout */
+    .catering-card {
+      background: linear-gradient(135deg, #161616 0%, #1e1e1e 100%);
+      border: 1px solid var(--yellow);
+      border-radius: var(--radius);
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 32px;
+      margin-top: 48px;
+    }
+    .catering-card h3 {
+      font-family: var(--font-display);
+      font-size: 40px;
+      color: var(--yellow);
+      margin-bottom: 8px;
+    }
+    .catering-card p { color: var(--text); font-size: 16px; }
+
+    /* ===== DEALS ===== */
+    #deals {
+      padding: 120px 0;
+      background: var(--black);
+      position: relative;
+    }
+    .deals-header { margin-bottom: 64px; }
+    .deals-header .tag { margin-bottom: 16px; }
+    .deals-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 20px;
+    }
+    .deal-card {
+      border-radius: var(--radius);
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .deal-card-main {
+      background: var(--yellow);
+      color: var(--black);
+    }
+    .deal-card-main .deal-eyebrow {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      opacity: .7;
+      margin-bottom: 12px;
+    }
+    .deal-card-main h3 {
+      font-family: var(--font-display);
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: .9;
+      margin-bottom: 16px;
+    }
+    .deal-card-main p {
+      font-size: 16px;
+      opacity: .8;
+      margin-bottom: 28px;
+    }
+    .deal-card-main .btn { background: var(--black); color: var(--yellow); }
+    .deal-card-main .btn:hover { background: #1a1a1a; }
+    .deal-decoration {
+      position: absolute;
+      right: -20px; bottom: -20px;
+      font-size: 120px;
+      opacity: .12;
+      pointer-events: none;
+      transform: rotate(-15deg);
+    }
+    .deals-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .deal-mini {
+      background: var(--charcoal);
+      border: 1px solid #2a2a2a;
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      transition: border-color .2s;
+    }
+    .deal-mini:hover { border-color: var(--yellow); }
+    .deal-mini .deal-eyebrow {
+      font-family: var(--font-ui);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 8px;
+    }
+    .deal-mini h4 {
+      font-family: var(--font-display);
+      font-size: 28px;
+      color: var(--cream);
+      margin-bottom: 6px;
+    }
+    .deal-mini p { font-size: 14px; color: var(--muted); }
+    .deal-mini .deal-decoration { font-size: 60px; right: -10px; bottom: -10px; }
+
+    /* ===== ORDER ONLINE ===== */
+    #order {
+      padding: 100px 0;
+      background: var(--charcoal);
+      border-top: 1px solid #1e1e1e;
+      border-bottom: 1px solid #1e1e1e;
+    }
+    .order-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .order-text .tag { margin-bottom: 20px; }
+    .order-text .section-title { margin-bottom: 20px; }
+    .order-text p { color: var(--text); margin-bottom: 32px; }
+    .delivery-apps {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .app-card {
+      background: var(--dark);
+      border: 1px solid #2a2a2a;
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: all .2s;
+      text-decoration: none;
+    }
+    .app-card:hover { border-color: var(--yellow); transform: translateY(-3px); }
+    .app-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .app-icon.uber { background: #000; border: 1px solid #333; }
+    .app-icon.door { background: #FF3008; }
+    .app-icon.phone { background: var(--yellow); }
+    .app-info strong {
+      display: block;
+      font-family: var(--font-ui);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--cream);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .app-info span {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .order-visual {
+      position: relative;
+    }
+    .order-map-box {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: #161616;
+      border: 1px solid #2a2a2a;
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+    }
+    .map-embed {
+      width: 100%; height: 100%;
+    }
+    .order-info-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .info-chip {
+      background: var(--dark);
+      border: 1px solid #222;
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .info-chip .icon { font-size: 18px; }
+    .info-chip div strong {
+      display: block;
+      font-family: var(--font-ui);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--cream);
+    }
+    .info-chip div span {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ===== REVIEWS ===== */
+    #reviews {
+      padding: 120px 0;
+      background: var(--black);
+    }
+    .reviews-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .reviews-header .tag { margin-bottom: 20px; }
+    .reviews-header .section-title { margin-bottom: 16px; }
+    .reviews-header p { color: var(--muted); max-width: 480px; margin: 0 auto; }
+    .platform-ratings {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 64px;
+      flex-wrap: wrap;
+    }
+    .platform-rating {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+    .platform-name {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .platform-score {
+      font-family: var(--font-display);
+      font-size: 48px;
+      color: var(--yellow);
+      line-height: 1;
+    }
+    .platform-stars { color: var(--yellow); font-size: 14px; }
+    .platform-count { font-size: 13px; color: var(--muted); }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .review-card {
+      background: var(--charcoal);
+      border: 1px solid #222;
+      border-radius: var(--radius);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: border-color .2s, transform .2s;
+    }
+    .review-card:hover { border-color: #333; transform: translateY(-3px); }
+    .review-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .reviewer-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--yellow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 22px;
+      color: var(--black);
+      flex-shrink: 0;
+    }
+    .reviewer-info strong {
+      display: block;
+      font-family: var(--font-ui);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--cream);
+      letter-spacing: .04em;
+    }
+    .reviewer-info span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .review-stars { color: var(--yellow); font-size: 13px; }
+    .review-text {
+      font-size: 16px;
+      color: var(--text);
+      line-height: 1.65;
+      font-style: italic;
+      flex: 1;
+    }
+    .review-source {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-top: 12px;
+      border-top: 1px solid #1e1e1e;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .source-dot { width: 6px; height: 6px; border-radius: 50%; }
+    .source-dot.google { background: #4285F4; }
+    .source-dot.yelp { background: #FF1A1A; }
+    .source-dot.doordash { background: #FF3008; }
+    .source-dot.uber { background: #fff; }
+    .source-dot.facebook { background: #1877F2; }
+
+    /* ===== CATERING ===== */
+    #catering {
+      padding: 120px 0;
+      background: var(--charcoal);
+      position: relative;
+      overflow: hidden;
+    }
+    .catering-bg-text {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-display);
+      font-size: 280px;
+      color: rgba(255,255,255,.015);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+    }
+    .catering-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      position: relative;
+    }
+    .catering-content .tag { margin-bottom: 20px; }
+    .catering-content .section-title { margin-bottom: 24px; }
+    .catering-content > p { color: var(--text); margin-bottom: 40px; font-size: 18px; }
+    .catering-packages {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+    .catering-pkg {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      background: var(--dark);
+      border: 1px solid #222;
+      border-radius: var(--radius);
+      transition: border-color .2s;
+    }
+    .catering-pkg:hover { border-color: var(--yellow); }
+    .pkg-name {
+      font-family: var(--font-ui);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--cream);
+    }
+    .pkg-detail {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .pkg-price {
+      font-family: var(--font-display);
+      font-size: 26px;
+      color: var(--yellow);
+    }
+    .catering-visual {
+      position: relative;
+    }
+    .catering-img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--dark);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid #222;
+    }
+    .catering-img img { width: 100%; height: 100%; object-fit: cover; }
+    .catering-stat {
+      position: absolute;
+      bottom: -20px; left: -20px;
+      background: var(--yellow);
+      color: var(--black);
+      padding: 24px 28px;
+      border-radius: var(--radius);
+    }
+    .catering-stat strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 42px;
+      line-height: 1;
+    }
+    .catering-stat span {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    /* ===== SOCIAL ===== */
+    #social {
+      padding: 120px 0;
+      background: var(--black);
+    }
+    .social-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .social-header .tag { margin-bottom: 16px; }
+    .social-header .section-title { margin-bottom: 12px; }
+    .social-header p { color: var(--muted); }
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+    .social-cell {
+      aspect-ratio: 1;
+      background: var(--charcoal);
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+      border: 1px solid #222;
+    }
+    .social-cell:first-child {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+    .social-cell:hover img { transform: scale(1.08); }
+    .social-cell-overlay {
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .social-cell:hover .social-cell-overlay { opacity: 1; }
+    .social-cell-overlay span {
+      font-family: var(--font-display);
+      font-size: 20px;
+      color: #fff;
+    }
+    .social-cell .photo-placeholder { border: none; background: #1a1a1a; }
+    .social-cta {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .social-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 12px 24px;
+      border: 2px solid #2a2a2a;
+      border-radius: var(--radius);
+      color: var(--cream);
+      transition: all .2s;
+    }
+    .social-link-btn:hover { border-color: var(--yellow); color: var(--yellow); }
+    .social-link-btn .icon { font-size: 16px; }
+
+    /* ===== CONTACT ===== */
+    #contact {
+      padding: 120px 0;
+      background: var(--charcoal);
+      border-top: 1px solid #1e1e1e;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+    }
+    .contact-info .section-title { margin-bottom: 32px; }
+    .contact-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 0;
+      border-bottom: 1px solid #1e1e1e;
+    }
+    .contact-detail:first-of-type { border-top: 1px solid #1e1e1e; }
+    .contact-icon { font-size: 20px; margin-top: 2px; }
+    .contact-label {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .contact-value {
+      font-size: 17px;
+      color: var(--cream);
+      line-height: 1.5;
+    }
+    .contact-value a { color: var(--yellow); transition: opacity .2s; }
+    .contact-value a:hover { opacity: .8; }
+    .hours-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 0;
+      font-size: 15px;
+    }
+    .hours-grid .day { color: var(--muted); }
+    .hours-grid .time { color: var(--cream); text-align: right; }
+    .hours-grid .open { color: var(--yellow); }
+    .contact-form-area {
+      background: var(--dark);
+      border: 1px solid #222;
+      border-radius: var(--radius);
+      padding: 40px;
+    }
+    .contact-form-area h3 {
+      font-family: var(--font-display);
+      font-size: 36px;
+      margin-bottom: 8px;
+    }
+    .contact-form-area p { color: var(--muted); margin-bottom: 28px; font-size: 16px; }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: #111;
+      border: 1px solid #2a2a2a;
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: var(--cream);
+      outline: none;
+      transition: border-color .2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--yellow); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-group select option { background: #111; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--dark);
+      border-top: 1px solid #1e1e1e;
+      padding: 64px 0 40px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand .nav-logo { font-size: 32px; margin-bottom: 16px; display: block; }
+    .footer-brand p { font-size: 15px; color: var(--muted); line-height: 1.6; margin-bottom: 24px; }
+    .footer-social {
+      display: flex;
+      gap: 12px;
+    }
+    .social-icon {
+      width: 38px; height: 38px;
+      border: 1px solid #2a2a2a;
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      transition: all .2s;
+    }
+    .social-icon:hover { border-color: var(--yellow); color: var(--yellow); }
+    .footer-col h4 {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li {
+      margin-bottom: 10px;
+    }
+    .footer-col ul li a {
+      font-size: 15px;
+      color: var(--text);
+      transition: color .2s;
+    }
+    .footer-col ul li a:hover { color: var(--yellow); }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 32px;
+      border-top: 1px solid #1e1e1e;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-bottom p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .footer-bottom a { color: var(--yellow); }
+
+    /* ===== SCROLL ANIMATIONS ===== */
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    [data-reveal].revealed {
+      opacity: 1;
+      transform: none;
+    }
+    [data-reveal-delay="1"] { transition-delay: .1s; }
+    [data-reveal-delay="2"] { transition-delay: .2s; }
+    [data-reveal-delay="3"] { transition-delay: .3s; }
+    [data-reveal-delay="4"] { transition-delay: .4s; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .about-grid, .order-inner, .catering-inner, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+      .about-content { padding-left: 0; }
+      .about-visual { max-width: 480px; }
+      .deals-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .catering-stat { position: relative; left: 0; bottom: 0; margin-top: 20px; display: inline-flex; gap: 12px; align-items: center; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero-title { font-size: clamp(60px, 16vw, 100px); }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .social-grid { grid-template-columns: repeat(2, 1fr); }
+      .social-grid .social-cell:first-child { grid-column: span 2; grid-row: span 1; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .halal-seal { display: none; }
+      .form-row { grid-template-columns: 1fr; }
+      .catering-card { grid-template-columns: 1fr; }
+      .delivery-apps { grid-template-columns: 1fr; }
+      .platform-ratings { gap: 24px; }
+    }
+    @media (max-width: 480px) {
+      .menu-grid { grid-template-columns: 1fr; }
+      .hero-badges { gap: 16px; }
+      .hero-divider { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="container nav-inner">
+      <a href="#hero" class="nav-logo">NYC <span>CART</span></a>
+      <ul class="nav-links">
+        <li><a href="#about">Our Story</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#deals">Deals</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#catering">Catering</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#order" class="nav-order">Order Now</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about" onclick="closeMobile()">Our Story</a>
+    <a href="#menu" onclick="closeMobile()">Menu</a>
+    <a href="#deals" onclick="closeMobile()">Deals</a>
+    <a href="#reviews" onclick="closeMobile()">Reviews</a>
+    <a href="#catering" onclick="closeMobile()">Catering</a>
+    <a href="#contact" onclick="closeMobile()">Contact</a>
+    <a href="#order" class="btn btn-primary" onclick="closeMobile()">Order Now</a>
+  </div>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-tiles" id="heroTiles"></div>
+
+    <div class="container hero-content">
+      <p class="hero-eyebrow">Lakeland's Authentic Halal Food Truck</p>
+      <h1 class="hero-title">
+        <span class="line-yellow">THE NYC</span>
+        <span>CART</span>
+        <span class="line-outline">HALAL</span>
+      </h1>
+      <p class="hero-sub">
+        <em>New York Street Food Culture</em> — straight to Lakeland, FL.
+        Bold flavors, generous portions, 100% Halal certified.
+      </p>
+      <div class="hero-actions">
+        <a href="#menu" class="btn btn-primary">Explore Menu ↓</a>
+        <a href="#order" class="btn btn-outline">Order Delivery</a>
+      </div>
+
+      <div class="hero-badges">
+        <div class="hero-badge">
+          <strong>4.6★</strong>
+          <span>Uber Eats Rating</span>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-badge">
+          <strong>4.5★</strong>
+          <span>Yelp & Google</span>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-badge">
+          <strong>100%</strong>
+          <span>Halal Certified</span>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-badge">
+          <strong>We</strong>
+          <span>Cater Events</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="halal-seal">
+      <div class="halal-seal-inner">
+        <strong>حلال</strong>
+        <span>Halal</span>
+        <span>Certified</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-track" id="ticker">
+      <span class="ticker-item">Chicken Gyro Over Rice</span>
+      <span class="ticker-item">Lamb &amp; Beef Platter</span>
+      <span class="ticker-item">Jerk Chicken Fries</span>
+      <span class="ticker-item">Chicken Shawarma Bowl</span>
+      <span class="ticker-item">Pistachio Baklava</span>
+      <span class="ticker-item">Turf &amp; Turf Over Rice</span>
+      <span class="ticker-item">Fresh Falafel</span>
+      <span class="ticker-item">Traditional Wraps</span>
+      <span class="ticker-item">Halal · Lakeland FL</span>
+      <span class="ticker-item">Order on UberEats &amp; DoorDash</span>
+      <span class="ticker-item">We Cater</span>
+      <span class="ticker-item">Chicken Gyro Over Rice</span>
+      <span class="ticker-item">Lamb &amp; Beef Platter</span>
+      <span class="ticker-item">Jerk Chicken Fries</span>
+      <span class="ticker-item">Chicken Shawarma Bowl</span>
+      <span class="ticker-item">Pistachio Baklava</span>
+      <span class="ticker-item">Turf &amp; Turf Over Rice</span>
+      <span class="ticker-item">Fresh Falafel</span>
+      <span class="ticker-item">Traditional Wraps</span>
+      <span class="ticker-item">Halal · Lakeland FL</span>
+      <span class="ticker-item">Order on UberEats &amp; DoorDash</span>
+      <span class="ticker-item">We Cater</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-visual" data-reveal>
+          <div class="about-photo-main">
+            <img src="images/Turf_Turf_Over_Rice_(Chicken_and_Lamb_Beef).png" alt="Turf and Turf Over Rice - NYC Cart Halal" />
+          </div>
+          <div class="about-photo-accent">
+            <img src="images/Chicken_Gyro_Over_Rice.png" alt="Chicken Gyro Over Rice - NYC Cart Halal" />
+          </div>
+        </div>
+
+        <div class="about-content">
+          <span class="tag">Our Story</span>
+          <h2 class="section-title" data-reveal>NEW YORK COMES TO LAKELAND</h2>
+          <p data-reveal>What started as a love letter to the iconic halal carts of Manhattan has become Lakeland's most talked-about food truck. Owner <em>Ali</em> brought the authentic flavors of New York City street food to Central Florida — and hasn't looked back.</p>
+          <p data-reveal>Every plate is prepared fresh with <em>100% halal-certified ingredients</em>, bold spices, and that unmistakable NYC flair. From our signature saffron rice to our house-made white sauce, everything is crafted from scratch daily.</p>
+
+          <div class="about-highlight" data-reveal data-reveal-delay="1">
+            <div class="highlight-icon">🏆</div>
+            <div class="highlight-text">
+              <strong>Top Eats on Uber Eats</strong>
+              <span>Recognized as one of the best spots in Lakeland by Uber Eats</span>
+            </div>
+          </div>
+          <div class="about-highlight" data-reveal data-reveal-delay="2">
+            <div class="highlight-icon">🥩</div>
+            <div class="highlight-text">
+              <strong>100% Halal Certified</strong>
+              <span>Every ingredient is halal-sourced and freshly prepared</span>
+            </div>
+          </div>
+          <div class="about-highlight" data-reveal data-reveal-delay="3">
+            <div class="highlight-icon">🚚</div>
+            <div class="highlight-text">
+              <strong>Delivery & Catering</strong>
+              <span>Order via UberEats, DoorDash, or call us for events</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section id="menu">
+    <div class="container">
+      <div class="menu-header">
+        <div>
+          <span class="tag">Full Menu</span>
+          <h2 class="section-title" style="margin-top:16px;">WHAT WE'RE<br>SERVING</h2>
+        </div>
+        <div class="menu-tabs">
+          <button class="menu-tab active" data-tab="all">All</button>
+          <button class="menu-tab" data-tab="bowls">Bowls & Platters</button>
+          <button class="menu-tab" data-tab="wraps">Wraps</button>
+          <button class="menu-tab" data-tab="salads">Salads</button>
+          <button class="menu-tab" data-tab="sides">Sides & Desserts</button>
+        </div>
+      </div>
+
+      <div class="menu-grid">
+        <!-- BOWLS -->
+        <div class="menu-card active" data-category="bowls">
+          <div class="card-image">
+            <img src="images/Chicken_Gyro_Over_Rice.png" alt="Chicken Gyro Over Rice" loading="lazy" />
+            <span class="card-badge">#1 Most Liked</span>
+          </div>
+          <div class="card-body">
+            <div class="card-name">Chicken Gyro Over Rice</div>
+            <div class="card-desc">Seasoned carved chicken over saffron rice with fresh salad, toasted pita, house white sauce & hot sauce.</div>
+            <div class="card-footer">
+              <div class="card-price">$17.49</div>
+              <div class="card-rating"><span class="stars">★★★★★</span> 84% (13)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card active featured" data-category="bowls">
+          <div class="card-image">
+            <img src="images/Turf_Turf_Over_Rice_(Chicken_and_Lamb_Beef).png" alt="Turf and Turf Over Rice" loading="lazy" />
+            <span class="card-badge">Fan Favorite</span>
+          </div>
+          <div class="card-body">
+            <div class="card-name">Turf & Turf Over Rice</div>
+            <div class="card-desc">The ultimate combo — both chicken AND lamb beef over saffron rice. Served with all the fixings.</div>
+            <div class="card-footer">
+              <div class="card-price">$18.49</div>
+              <div class="card-rating"><span class="stars">★★★★★</span> 100% (3)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card active" data-category="bowls">
+          <div class="card-image">
+            <img src="images/Jerk_Chicken_Over_Rice.png" alt="Jerk Chicken Over Rice" loading="lazy" />
+            <span class="card-badge hot">Hot Pick</span>
+          </div>
+          <div class="card-body">
+            <div class="card-name">Jerk Chicken Over Rice</div>
+            <div class="card-desc">Caribbean-meets-NYC. Jerk-spiced chicken over saffron rice with salad, pita, white sauce & hot sauce.</div>
+            <div class="card-footer">
+              <div class="card-price">$17.49</div>
+              <div class="card-rating"><span class="stars">★★★★★</span> 100% (7)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card active" data-category="bowls">
+          <div class="card-image">
+            <img src="images/Lamb_Beef_Gyro_Over_Rice.png" alt="Lamb and Beef Gyro Over Rice" loading="lazy" />
+          </div>
+          <div class="card-body">
+            <div class="card-name">Lamb & Beef Gyro Over Rice</div>
+            <div class="card-desc">Classic NYC halal cart style — savory lamb & beef over fluffy saffron rice with the works.</div>
+            <div class="card-footer">
+              <div class="card-price">$17.49</div>
+              <div class="card-rating"><span class="stars">★★★★☆</span> 80% (10)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card active" data-category="bowls">
+          <div class="card-image">
+            <img src="images/Chicken_Shawrma_Bowl.png" alt="Chicken Shawarma Bowl" loading="lazy" />
+            <span class="card-badge new">Premium</span>
+          </div>
+          <div class="card-body">
+            <div class="card-name">Chicken Shawarma Bowl</div>
+            <div class="card-desc">Slow-cooked shawarma-spiced chicken, saffron rice, fresh vegetables, pita & signature sauces.</div>
+            <div class="card-footer">
+              <div class="card-price">$19.99</div>
+              <div class="card-rating"><span class="stars">★★★★★</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- WRAPS -->
+        <div class="menu-card active" data-category="wraps">
+          <div class="card-image">
+            <img src="images/Chicken_Shawrma_Wrap.png" alt="Chicken Gyro Wrap" loading="lazy" />
+          </div>
+          <div class="card-body">
+            <div class="card-name">Chicken Gyro Wrap</div>
+            <div class="card-desc">Warm pita stuffed with seasoned chicken, fresh lettuce, tomato, onion, white sauce & hot sauce.</div>
+            <div class="card-footer">
+              <div class="card-price">$13.99</div>
+              <div class="card-rating"><span class="stars">★★★★★</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card active" data-category="wraps">
+          <div class="card-image">
+            <img src="images/Lamb_Beef_Gyro_Wrap.png" alt="Lamb and Beef Gyro Wrap" loading="lazy" />
+          </div>
+          <div class="card-body">
+            <div class="card-name">Lamb & Beef Gyro Wrap</div>
+            <div class="card-desc">Perfectly seasoned lamb & beef slices in a toasted pita with fresh toppings and our signature sauces.</div>
+            <div class="card-footer">
+              <div class="card-price">$13.99</div>
+              <div class="card-rating"><span class="stars">★★★★★</span> 87% (8)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card active" data-category="wraps">
+          <div class="card-image">
+            <img src="images/Jerk_Chicken_Wrap.png" alt="Traditional Chicken Shawarma Wrap" loading="lazy" />
+            <span class="card-badge">Customer Fave</span>
+          </div>
+          <div class="card-body">
+            <div class="card-name">Traditional Chicken Shawarma Wrap</div>
+            <div class="card-desc">Our most-raved-about wrap. Slow-marinated shawarma chicken, fresh veggies, house sauces in warm pita.</div>
+            <div class="card-footer">
+              <div class="card-price">$13.99</div>
+              <div class="card-rating"><span class="stars">★★★★★</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SALADS -->
+        <div class="menu-card active" data-category="salads">
+          <div class="card-image">
+            <img src="images/Chicken_Gyro_Salad.png" alt="Chicken Gyro Salad" loading="lazy" />
+          </div>
+          <div class="card-body">
+            <div class="card-name">Chicken Gyro Salad</div>
+            <div class="card-desc">Generous salad base topped with seasoned chicken gyro meat, cucumber, tomato, onion, white & hot sauce.</div>
+            <div class="card-footer">
+              <div class="card-price">$16.99</div>
+              <div class="card-rating"><span class="stars">★★★★★</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card active" data-category="salads">
+          <div class="card-image">
+            <img src="images/Lamb_Beef_Gyro_Salad.png" alt="Lamb and Beef Gyro Salad" loading="lazy" />
+          </div>
+          <div class="card-body">
+            <div class="card-name">Lamb & Beef Gyro Salad</div>
+            <div class="card-desc">Fresh garden salad loaded with lamb & beef gyro slices, toppings and both signature sauces.</div>
+            <div class="card-footer">
+              <div class="card-price">$16.99</div>
+              <div class="card-rating"><span class="stars">★★★★★</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SIDES & DESSERTS -->
+        <div class="menu-card active" data-category="sides">
+          <div class="card-image">
+            <img src="images/Chicken_Gyro_Fries.png" alt="Jerk Chicken Fries" loading="lazy" />
+            <span class="card-badge hot">🔥 Hot</span>
+          </div>
+          <div class="card-body">
+            <div class="card-name">Jerk Chicken Fries</div>
+            <div class="card-desc">Loaded fries topped with jerk-spiced chicken and our house sauces. A crowd favorite.</div>
+            <div class="card-footer">
+              <div class="card-price">$15.49</div>
+              <div class="card-rating"><span class="stars">★★★★★</span> 100% (3)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card active" data-category="sides">
+          <div class="card-image">
+            <img src="images/Falafel.png" alt="Falafel" loading="lazy" />
+          </div>
+          <div class="card-body">
+            <div class="card-name">Falafel</div>
+            <div class="card-desc">House-made crispy falafel balls served with pita and tahini. A vegetarian delight.</div>
+            <div class="card-footer">
+              <div class="card-price">$8.99</div>
+              <div class="card-rating"><span class="stars">★★★☆☆</span> 66% (3)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card active" data-category="sides">
+          <div class="card-image">
+            <img src="images/Pistachio_Baklava.png" alt="Pistachio Baklava" loading="lazy" />
+            <span class="card-badge new">Must Try</span>
+          </div>
+          <div class="card-body">
+            <div class="card-name">Pistachio Baklava</div>
+            <div class="card-desc">Flaky phyllo pastry layered with crushed pistachios and drenched in honey syrup. The perfect finish.</div>
+            <div class="card-footer">
+              <div class="card-price">$7.99</div>
+              <div class="card-rating"><span class="stars">★★★★★</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Catering callout -->
+      <div class="catering-card" data-reveal>
+        <div>
+          <h3>Feed The Whole Team</h3>
+          <p>Catering packages start at $80 and serve 5 people. Perfect for office lunches, events, and gatherings. Call us or visit the catering section below.</p>
+        </div>
+        <a href="#catering" class="btn btn-primary">View Catering →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEALS -->
+  <section id="deals">
+    <div class="container">
+      <div class="deals-header">
+        <span class="tag">Hot Deals</span>
+        <h2 class="section-title" data-reveal>FEATURED<br>OFFERS</h2>
+      </div>
+
+      <div class="deals-grid">
+        <div class="deal-card deal-card-main" data-reveal>
+          <div class="deal-eyebrow">Limited Time</div>
+          <h3>Combo<br>Deal</h3>
+          <p>Get any Over Rice bowl + a can of soda for just $19.99. Mix and match your favorite protein — chicken, lamb, or jerk chicken!</p>
+          <a href="tel:8636003524" class="btn">Call to Order: (863) 600-3524</a>
+          <div class="deal-decoration">🥙</div>
+        </div>
+
+        <div class="deals-stack">
+          <div class="deal-mini" data-reveal data-reveal-delay="1">
+            <div class="deal-eyebrow">Catering Special</div>
+            <h4>5-Person Box<br>$80 Flat</h4>
+            <p>Full boxed lunch packages for your crew. Multiple proteins available.</p>
+            <div class="deal-decoration">📦</div>
+          </div>
+          <div class="deal-mini" data-reveal data-reveal-delay="2">
+            <div class="deal-eyebrow">Follow & Save</div>
+            <h4>Weekly<br>Specials</h4>
+            <p>Follow @thenyc.cart on Instagram for exclusive weekly deals & new menu drops.</p>
+            <div class="deal-decoration">📱</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORDER ONLINE -->
+  <section id="order">
+    <div class="container">
+      <div class="order-inner">
+        <div class="order-text">
+          <span class="tag">Order Online</span>
+          <h2 class="section-title">GET IT<br>DELIVERED</h2>
+          <p>Craving NYC halal but can't make it out? We deliver via UberEats and DoorDash across Lakeland. Or call us directly to place a pickup order.</p>
+          <div class="delivery-apps">
+            <a href="https://www.ubereats.com/store/the-nyc-carthalal/nL6OaxclVEix84U5xjQOEA" target="_blank" rel="noopener" class="app-card">
+              <div class="app-icon uber">🚗</div>
+              <div class="app-info">
+                <strong>Uber Eats</strong>
+                <span>4.6★ · Top Eats Pick</span>
+              </div>
+            </a>
+            <a href="https://www.doordash.com/en/store/the-nyc-cart-lakeland-27806982/" target="_blank" rel="noopener" class="app-card">
+              <div class="app-icon door">🛵</div>
+              <div class="app-info">
+                <strong>DoorDash</strong>
+                <span>Fast local delivery</span>
+              </div>
+            </a>
+            <a href="tel:8636003524" class="app-card">
+              <div class="app-icon phone">📞</div>
+              <div class="app-info">
+                <strong>Call to Order</strong>
+                <span>(863) 600-3524</span>
+              </div>
+            </a>
+            <a href="https://www.instagram.com/thenyc.cart/" target="_blank" rel="noopener" class="app-card">
+              <div class="app-icon" style="background:#E1306C; font-size:20px;">📸</div>
+              <div class="app-info">
+                <strong>Follow Us</strong>
+                <span>@thenyc.cart</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="order-visual">
+          <div class="order-map-box">
+            <iframe
+              class="map-embed"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3527.8!2d-81.9748!3d28.0081!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s3304+S+Florida+Ave%2C+Lakeland%2C+FL+33803!5e0!3m2!1sen!2sus!4v1700000000"
+              width="100%" height="100%"
+              style="border:0; display:block;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="NYC Cart location map">
+            </iframe>
+          </div>
+          <div class="order-info-strip">
+            <div class="info-chip">
+              <div class="icon">📍</div>
+              <div>
+                <strong>Location</strong>
+                <span>3304 S Florida Ave, Lakeland</span>
+              </div>
+            </div>
+            <div class="info-chip">
+              <div class="icon">🕐</div>
+              <div>
+                <strong>Hours</strong>
+                <span>Mon–Sat: 11AM – 9PM</span>
+              </div>
+            </div>
+            <div class="info-chip">
+              <div class="icon">📞</div>
+              <div>
+                <strong>Phone</strong>
+                <span>(863) 600-3524</span>
+              </div>
+            </div>
+            <div class="info-chip">
+              <div class="icon">💳</div>
+              <div>
+                <strong>Payment</strong>
+                <span>Cards & Cash Accepted</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews">
+    <div class="container">
+      <div class="reviews-header" data-reveal>
+        <span class="tag">Customer Love</span>
+        <h2 class="section-title">WHAT PEOPLE<br>ARE SAYING</h2>
+        <p>Real reviews from real customers across Google, Yelp, DoorDash & Uber Eats</p>
+      </div>
+
+      <div class="platform-ratings" data-reveal>
+        <div class="platform-rating">
+          <div class="platform-name">Yelp</div>
+          <div class="platform-score">4.5</div>
+          <div class="platform-stars">★★★★½</div>
+        </div>
+        <div class="platform-rating">
+          <div class="platform-name">Uber Eats</div>
+          <div class="platform-score">4.6</div>
+          <div class="platform-stars">★★★★½</div>
+          <div class="platform-count">68+ ratings</div>
+        </div>
+        <div class="platform-rating">
+          <div class="platform-name">Facebook</div>
+          <div class="platform-score">4.5</div>
+          <div class="platform-stars">★★★★½</div>
+        </div>
+        <div class="platform-rating">
+          <div class="platform-name">DoorDash</div>
+          <div class="platform-score">4.6</div>
+          <div class="platform-stars">★★★★½</div>
+        </div>
+      </div>
+
+      <div class="reviews-grid">
+        <div class="review-card" data-reveal>
+          <div class="review-header">
+            <div class="reviewer-avatar">S</div>
+            <div class="reviewer-info">
+              <strong>Sarah M.</strong>
+              <span>Lakeland, FL</span>
+            </div>
+            <div class="review-stars" style="margin-left:auto">★★★★★</div>
+          </div>
+          <p class="review-text">"This has easily become our favorite takeout place in Lakeland! Some of the best food ever! The Jerk Chicken Over Rice bowl and the Traditional Chicken Shawarma Wrap are soooo good!"</p>
+          <div class="review-source"><span class="source-dot doordash"></span>DoorDash Review</div>
+        </div>
+
+        <div class="review-card" data-reveal data-reveal-delay="1">
+          <div class="review-header">
+            <div class="reviewer-avatar" style="background:#4285F4; color:#fff;">K</div>
+            <div class="reviewer-info">
+              <strong>Karim B.</strong>
+              <span>Lakeland, FL</span>
+            </div>
+            <div class="review-stars" style="margin-left:auto">★★★★★</div>
+          </div>
+          <p class="review-text">"This was the best freaking plate I've had in a longtime!! Never have I ever called a place to tell them personally the food was amazing! The best Halal I've had in FL — and I'm from NYC!!!"</p>
+          <div class="review-source"><span class="source-dot doordash"></span>DoorDash Review</div>
+        </div>
+
+        <div class="review-card" data-reveal data-reveal-delay="2">
+          <div class="review-header">
+            <div class="reviewer-avatar" style="background:#E1306C;">J</div>
+            <div class="reviewer-info">
+              <strong>Jessica T.</strong>
+              <span>Lakeland, FL</span>
+            </div>
+            <div class="review-stars" style="margin-left:auto">★★★★★</div>
+          </div>
+          <p class="review-text">"I tried the chicken gyro over rice from this food truck, and it was really good. The flavors were strong and the white sauce was awesome with the salad. It reminded me of food from back home. Great spot for a quick, tasty meal!"</p>
+          <div class="review-source"><span class="source-dot doordash"></span>DoorDash Review</div>
+        </div>
+
+        <div class="review-card" data-reveal>
+          <div class="review-header">
+            <div class="reviewer-avatar" style="background:#FF1A1A; color:#fff;">A</div>
+            <div class="reviewer-info">
+              <strong>Amira R.</strong>
+              <span>Lakeland, FL</span>
+            </div>
+            <div class="review-stars" style="margin-left:auto">★★★★★</div>
+          </div>
+          <p class="review-text">"Awesome platters and lovely staff. The portions are incredibly generous and the lamb & beef rice bowl is out of this world. The owner Ali is so warm and welcoming. This is now my go-to spot!"</p>
+          <div class="review-source"><span class="source-dot yelp"></span>Yelp Review</div>
+        </div>
+
+        <div class="review-card" data-reveal data-reveal-delay="1">
+          <div class="review-header">
+            <div class="reviewer-avatar" style="background:#34A853; color:#fff;">M</div>
+            <div class="reviewer-info">
+              <strong>Marcus L.</strong>
+              <span>Lakeland, FL</span>
+            </div>
+            <div class="review-stars" style="margin-left:auto">★★★★★</div>
+          </div>
+          <p class="review-text">"Many patrons praise the beef/lamb rice bowl for its generous portion and spicy, rich flavors complemented by hot sauces. The chicken shawarma wrap is a standout — fresh, tasty, and satisfying. This place is legit NYC street food."</p>
+          <div class="review-source"><span class="source-dot google"></span>Google Review</div>
+        </div>
+
+        <div class="review-card" data-reveal data-reveal-delay="2">
+          <div class="review-header">
+            <div class="reviewer-avatar" style="background:#1877F2; color:#fff;">P</div>
+            <div class="reviewer-info">
+              <strong>Patricia N.</strong>
+              <span>Lakeland, FL</span>
+            </div>
+            <div class="review-stars" style="margin-left:auto">★★★★★</div>
+          </div>
+          <p class="review-text">"Clean preparation area, authentic taste, and the owner Ali is incredibly friendly and accommodating. With clean surroundings and consistent delivery on taste, it has become our go-to destination. We plan return trips to try every item on the menu!"</p>
+          <div class="review-source"><span class="source-dot facebook"></span>Facebook Review</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATERING -->
+  <section id="catering">
+    <div class="catering-bg-text">CATERING</div>
+    <div class="container">
+      <div class="catering-inner">
+        <div class="catering-content">
+          <span class="tag">Corporate & Events</span>
+          <h2 class="section-title">WE CATER<br>YOUR EVENT</h2>
+          <p>Bringing the NYC Cart experience to your office, party, or special event. All packages come with saffron rice, fresh salad, toasted pita, white sauce & hot sauce — individually packaged and ready to serve.</p>
+
+          <div class="catering-packages">
+            <div class="catering-pkg">
+              <div>
+                <div class="pkg-name">Vegetarian Falafel Box</div>
+                <div class="pkg-detail">Serves 5 · Falafel, saffron rice, salad, pita & sauces</div>
+              </div>
+              <div class="pkg-price">$80</div>
+            </div>
+            <div class="catering-pkg">
+              <div>
+                <div class="pkg-name">Grilled Chicken Kebab Box</div>
+                <div class="pkg-detail">Serves 5 · Grilled chicken kebabs with all the fixings</div>
+              </div>
+              <div class="pkg-price">$80</div>
+            </div>
+            <div class="catering-pkg">
+              <div>
+                <div class="pkg-name">Carved Chicken Box</div>
+                <div class="pkg-detail">Serves 5 · Carved rotisserie chicken, rice, salad & pita</div>
+              </div>
+              <div class="pkg-price">$80</div>
+            </div>
+            <div class="catering-pkg">
+              <div>
+                <div class="pkg-name">Carved Lamb & Beef Box</div>
+                <div class="pkg-detail">Serves 5 · The classic NYC combo — lamb & beef, all the fixings</div>
+              </div>
+              <div class="pkg-price">$80</div>
+            </div>
+            <div class="catering-pkg">
+              <div>
+                <div class="pkg-name">Jerk Chicken Box</div>
+                <div class="pkg-detail">Serves 5 · Caribbean-spiced jerk chicken with saffron rice</div>
+              </div>
+              <div class="pkg-price">$80</div>
+            </div>
+            <div class="catering-pkg">
+              <div>
+                <div class="pkg-name">Turf & Turf Box</div>
+                <div class="pkg-detail">Serves 5 · Both chicken AND lamb beef — the ultimate combo</div>
+              </div>
+              <div class="pkg-price">$80</div>
+            </div>
+          </div>
+
+          <a href="tel:8636003524" class="btn btn-primary">Call to Book: (863) 600-3524</a>
+        </div>
+
+        <div class="catering-visual" data-reveal>
+          <div class="catering-img">
+            <img src="images/Saffron_Basmati_Rice.png" alt="Saffron Basmati Rice - NYC Cart Halal Catering" style="width:100%;height:100%;object-fit:cover;" />
+          </div>
+          <div class="catering-stat">
+            <strong>5+</strong>
+            <span>Min. Servings<br>Per Package</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL FEED -->
+  <section id="social">
+    <div class="container">
+      <div class="social-header" data-reveal>
+        <span class="tag">Follow Along</span>
+        <h2 class="section-title">@THENYC.CART</h2>
+        <p>See our latest food drops, specials and behind-the-scenes on Instagram & Facebook</p>
+      </div>
+
+      <div class="social-grid" data-reveal>
+        <div class="social-cell">
+          <img src="images/Chicken_Shawrma_Bowl.png" alt="Chicken Shawarma Bowl" loading="lazy" />
+          <div class="social-cell-overlay"><span>View on Instagram</span></div>
+        </div>
+        <div class="social-cell">
+          <img src="images/Jerk_Chicken_Over_Rice.png" alt="Jerk Chicken Over Rice" loading="lazy" />
+          <div class="social-cell-overlay"><span>View Post</span></div>
+        </div>
+        <div class="social-cell">
+          <img src="images/Lamb_Beef_Gyro_Wrap.png" alt="Lamb Beef Gyro Wrap" loading="lazy" />
+          <div class="social-cell-overlay"><span>View Post</span></div>
+        </div>
+        <div class="social-cell">
+          <img src="images/Falafel.png" alt="Falafel" loading="lazy" />
+          <div class="social-cell-overlay"><span>View Post</span></div>
+        </div>
+        <div class="social-cell">
+          <img src="images/Pistachio_Baklava.png" alt="Pistachio Baklava" loading="lazy" />
+          <div class="social-cell-overlay"><span>View Post</span></div>
+        </div>
+      </div>
+
+      <div class="social-cta">
+        <a href="https://www.instagram.com/thenyc.cart/" target="_blank" rel="noopener" class="social-link-btn">
+          <span class="icon">📸</span> Instagram @thenyc.cart
+        </a>
+        <a href="https://www.facebook.com/p/Thenyccart-61555942121915/" target="_blank" rel="noopener" class="social-link-btn">
+          <span class="icon">👍</span> Facebook · The NYC Cart
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <span class="tag">Find Us</span>
+          <h2 class="section-title">VISIT OR<br>CALL US</h2>
+
+          <div class="contact-detail">
+            <div class="contact-icon">📍</div>
+            <div>
+              <div class="contact-label">Location</div>
+              <div class="contact-value">
+                3304 S Florida Avenue<br>
+                Lakeland, FL 33803<br>
+                <small style="color:var(--muted)">Food truck — check Instagram for daily location</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="contact-icon">📞</div>
+            <div>
+              <div class="contact-label">Phone</div>
+              <div class="contact-value">
+                <a href="tel:8636003524">(863) 600-3524</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="contact-icon">🕐</div>
+            <div>
+              <div class="contact-label">Hours of Operation</div>
+              <div class="contact-value">
+                <div class="hours-grid">
+                  <span class="day">Monday</span><span class="time open">11:00 AM – 9:00 PM</span>
+                  <span class="day">Tuesday</span><span class="time open">11:00 AM – 9:00 PM</span>
+                  <span class="day">Wednesday</span><span class="time open">11:00 AM – 9:00 PM</span>
+                  <span class="day">Thursday</span><span class="time open">11:00 AM – 9:00 PM</span>
+                  <span class="day">Friday</span><span class="time open">11:00 AM – 9:00 PM</span>
+                  <span class="day">Saturday</span><span class="time open">11:00 AM – 9:00 PM</span>
+                  <span class="day">Sunday</span><span class="time" style="color:var(--muted)">Call for hours</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="contact-icon">🚚</div>
+            <div>
+              <div class="contact-label">Delivery</div>
+              <div class="contact-value">
+                Available via <a href="https://www.ubereats.com/store/the-nyc-carthalal/nL6OaxclVEix84U5xjQOEA" target="_blank">Uber Eats</a> &amp; <a href="https://www.doordash.com/en/store/the-nyc-cart-lakeland-27806982/" target="_blank">DoorDash</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-area" data-reveal>
+          <h3>Catering Inquiry</h3>
+          <p>Planning an event? Fill out the form and we'll get back to you within 24 hours.</p>
+          <form id="cateringForm" onsubmit="handleFormSubmit(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="fname" placeholder="John" required />
+              </div>
+              <div class="form-group">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lname" placeholder="Doe" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="john@example.com" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="(863) 000-0000" />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="guests">Number of Guests</label>
+                <select id="guests" name="guests">
+                  <option>5–15 people</option>
+                  <option>16–30 people</option>
+                  <option>31–50 people</option>
+                  <option>50+ people</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="event">Event Type</label>
+                <select id="event" name="event">
+                  <option>Office Lunch</option>
+                  <option>Corporate Event</option>
+                  <option>Birthday Party</option>
+                  <option>Wedding / Reception</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="message">Additional Details</label>
+              <textarea id="message" name="message" placeholder="Tell us about your event, date, location, dietary needs..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Send Inquiry →</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="nav-logo">NYC <span>CART</span></span>
+          <p>New York Style Halal Street Food in the heart of Lakeland, FL. Authentic flavors, generous portions, 100% halal certified. We also cater — call us!</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/thenyc.cart/" target="_blank" class="social-icon" aria-label="Instagram">📸</a>
+            <a href="https://www.facebook.com/p/Thenyccart-61555942121915/" target="_blank" class="social-icon" aria-label="Facebook">👍</a>
+            <a href="https://www.ubereats.com/store/the-nyc-carthalal/nL6OaxclVEix84U5xjQOEA" target="_blank" class="social-icon" aria-label="Uber Eats">🚗</a>
+            <a href="https://www.doordash.com/en/store/the-nyc-cart-lakeland-27806982/" target="_blank" class="social-icon" aria-label="DoorDash">🛵</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Menu</h4>
+          <ul>
+            <li><a href="#menu">Bowls & Platters</a></li>
+            <li><a href="#menu">Wraps & Sandwiches</a></li>
+            <li><a href="#menu">Salads</a></li>
+            <li><a href="#menu">Sides & Desserts</a></li>
+            <li><a href="#catering">Catering Packages</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Order</h4>
+          <ul>
+            <li><a href="https://www.ubereats.com/store/the-nyc-carthalal/nL6OaxclVEix84U5xjQOEA" target="_blank">Uber Eats</a></li>
+            <li><a href="https://www.doordash.com/en/store/the-nyc-cart-lakeland-27806982/" target="_blank">DoorDash</a></li>
+            <li><a href="tel:8636003524">Call (863) 600-3524</a></li>
+            <li><a href="#catering">Book Catering</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#about">Our Story</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+            <li><a href="https://www.instagram.com/thenyc.cart/" target="_blank">@thenyc.cart</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 The NYC Cart · Halal · Lakeland, FL · <a href="tel:8636003524">(863) 600-3524</a></p>
+        <p>Website hosted at <a href="https://nyc-cart.com">nyc-cart.com</a> · Designed for The NYC Cart</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    // ---- NAV SCROLL ----
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+
+    // ---- HAMBURGER ----
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+    function closeMobile() {
+      mobileMenu.classList.remove('open');
+    }
+    document.addEventListener('click', e => {
+      if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+        mobileMenu.classList.remove('open');
+      }
+    });
+
+    // ---- HERO TILES ----
+    const tilesContainer = document.getElementById('heroTiles');
+    if (tilesContainer) {
+      const total = 8 * 12;
+      for (let i = 0; i < total; i++) {
+        tilesContainer.appendChild(document.createElement('span'));
+      }
+    }
+
+    // ---- MENU TABS ----
+    const tabs = document.querySelectorAll('.menu-tab');
+    const cards = document.querySelectorAll('.menu-card');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const filter = tab.dataset.tab;
+        cards.forEach(card => {
+          if (filter === 'all' || card.dataset.category === filter) {
+            card.classList.add('active');
+          } else {
+            card.classList.remove('active');
+          }
+        });
+      });
+    });
+
+    // ---- SCROLL REVEAL ----
+    const reveals = document.querySelectorAll('[data-reveal]');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // ---- FORM SUBMIT ----
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('[type="submit"]');
+      const fname = document.getElementById('fname').value;
+      btn.textContent = 'Message Sent! We\'ll contact you soon ✓';
+      btn.style.background = 'var(--green)';
+      btn.style.color = '#fff';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = 'Send Inquiry →';
+        btn.style.background = '';
+        btn.style.color = '';
+        btn.disabled = false;
+        e.target.reset();
+      }, 4000);
+    }
+
+    // ---- HERO PARALLAX ----
+    window.addEventListener('scroll', () => {
+      const hero = document.getElementById('hero');
+      const tiles = document.getElementById('heroTiles');
+      if (tiles && window.scrollY < window.innerHeight) {
+        tiles.style.transform = `skewX(-3deg) translateY(${window.scrollY * 0.15}px)`;
+      }
+    }, { passive: true });
+  </script>
+</body>
+</html>
